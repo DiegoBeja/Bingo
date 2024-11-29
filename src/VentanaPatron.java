@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VentanaPatron extends JFrame{
+public class VentanaPatron extends JFrame implements Mensaje{
     private JPanel panelPrincipal;
     private JLabel instrucciones;
     private JTextField tiradasTombola;
@@ -14,6 +14,7 @@ public class VentanaPatron extends JFrame{
     static int[][] patronVictoria;
 
     public VentanaPatron(){
+
         setTitle("Bingo");
         setSize(1300, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,23 +36,20 @@ public class VentanaPatron extends JFrame{
             String archivoNombre = "C:\\Users\\bombo\\IdeaProjects\\Bingo\\src\\Patrones\\patron" + (i + 1) + ".png";
             ImageIcon imagPatrones = new ImageIcon(archivoNombre);
 
-            // Redimensionar la imagen
             Image img = imagPatrones.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
             ImageIcon imagenPatrones = new ImageIcon(img);
 
-            // Crear un panel para cada imagen y botón
             JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BorderLayout());
 
-            // Crear el JLabel con la imagen
             JLabel etiquetaImagen = new JLabel(imagenPatrones);
             etiquetaImagen.setHorizontalAlignment(SwingConstants.CENTER);
 
-            JPanel botonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 5)); // FlowLayout centrado
+            JPanel botonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 5));
             JButton botonSeleccionar = new JButton("Patron" + (i+1));
-            botonSeleccionar.setFocusable(false); // Evitar que se muestre el enfoque
-            botonSeleccionar.setFont(new Font("Arial", Font.PLAIN, 10)); // Fuente pequeña
-            botonSeleccionar.setMargin(new Insets(0, 0, 0, 0)); // Márgenes internos ajustados
+            botonSeleccionar.setFocusable(false);
+            botonSeleccionar.setFont(new Font("Arial", Font.PLAIN, 10));
+            botonSeleccionar.setMargin(new Insets(0, 0, 0, 0));
 
             botonSeleccionar.addActionListener(new ActionListener() {
                 @Override
@@ -60,9 +58,9 @@ public class VentanaPatron extends JFrame{
                     patronVictoria= Patrones.getPatron(Integer.parseInt(actionCommand) - 1);
                     for(int i = 0; i < patronVictoria.length; i++){
                         for(int j = 0; j < patronVictoria[i].length; j++) {
-                            System.out.print(patronVictoria[i][j] + " "); // Imprimimos cada elemento con un espacio
+                            System.out.print(patronVictoria[i][j] + " ");
                         }
-                        System.out.println(); // Nueva línea después de cada fila
+                        System.out.println();
                     }
                     tiradasTombola.setEnabled(true);
                     jugar.setEnabled(true);
@@ -80,25 +78,22 @@ public class VentanaPatron extends JFrame{
         }
 
         JPanel panelInferior = new JPanel();
-        panelInferior.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Centrado y con espaciado
+        panelInferior.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
-        // Configuración del JTextField
-        tiradasTombola = new JTextField(15); // Ancho moderado
+        tiradasTombola = new JTextField(15);
         tiradasTombola.setEnabled(false);
         tiradasTombola.setFont(new Font("Arial", Font.PLAIN, 14));
         panelInferior.add(tiradasTombola);
 
-        // Configuración del botón "JUGAR"
         jugar = new JButton("JUGAR");
         jugar.setEnabled(false);
         jugar.setFont(new Font("Arial", Font.BOLD, 14));
-        jugar.setPreferredSize(new Dimension(100, 30)); // Tamaño moderado
+        jugar.setPreferredSize(new Dimension(100, 30));
         panelInferior.add(jugar);
 
-        // Agregar el panel inferior a la parte inferior del JFrame con un pequeño margen
         JPanel contenedorInferior = new JPanel(new BorderLayout());
-        contenedorInferior.add(panelInferior, BorderLayout.CENTER); // Centrado
-        contenedorInferior.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50)); // Márgenes ajustados (reduce el espacio inferior)
+        contenedorInferior.add(panelInferior, BorderLayout.CENTER);
+        contenedorInferior.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
 
         add(contenedorInferior, BorderLayout.SOUTH);
 
@@ -107,12 +102,27 @@ public class VentanaPatron extends JFrame{
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                InterfazJuego Bingo = new InterfazJuego();
-                Bingo.setVisible(true);
+                if(Integer.parseInt(tiradasTombola.getText()) < 5 || Integer.parseInt(tiradasTombola.getText()) > 75){
+                    mensaje("Ingrese un valor entre 5 y 75", "src/multiplicar.png");
+                    tiradasTombola.setText("");
+                }else{
+                    int tiradas = Integer.parseInt(tiradasTombola.getText());
+
+                    dispose();
+                    InterfazJuego Bingo = new InterfazJuego(tiradas);
+                    Bingo.setVisible(true);
+                }
+
             }
         });
     }
 
+    @Override
+    public void mensaje(String mensaje, String icono){
+        ImageIcon bingo = new ImageIcon(icono);
+        Image imgBingo = bingo.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon bingoEscalado = new ImageIcon(imgBingo);
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE, bingoEscalado);
+    }
 
 }

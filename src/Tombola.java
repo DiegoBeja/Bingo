@@ -5,7 +5,7 @@ import java.util.Random;
 public class Tombola {
     private ArrayList<Integer> numeroTombola;
     private List<Integer> historialTombola;
-    private int bola;
+    protected int bola;
 
     public Tombola(){
         historialTombola = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Tombola {
             numeroTombola.remove((Integer) bola);
             historialTombola.add(bola);
         } else{
-            System.out.println("Ya no hay boals");
+            System.out.println("Ya no hay bolas");
         }
 
         return bola;

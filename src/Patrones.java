@@ -295,7 +295,6 @@ public class Patrones{
             {0, 0, 0, 0, 0}
     };
 
-    // Almacenar los patrones en un array para fácil acceso por índice
     public static final List<int[][]> PATRONES =List.of(
             patron1, patron2, patron3, patron4, patron5, patron6, patron7, patron8, patron9, patron10, patron11, patron12, patron13, patron14, patron15, patron16, patron17, patron18, patron19, patron20, patron21, patron22, patron23, patron24, patron25, patron26, patron27, patron28, patron29, patron30, patron31, patron32, patron33, patron34, patron35, patron36, patron37, patron38
     );
