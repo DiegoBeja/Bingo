@@ -30,4 +30,5 @@ public class LogicaBingo extends Patrones{
 
         return false;
     }
+
 }

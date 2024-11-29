@@ -103,22 +103,17 @@ public class InterfazJuego extends JFrame implements Mensaje{
                             tableroBingo[i][j].setOpaque(true);
                             VentanaPatron.patronVictoria[i-1][j] = 0;
 
-                            for(int k = 0; k < VentanaPatron.patronVictoria.length; k++){
-                                for(int m = 0; m < VentanaPatron.patronVictoria[k].length; m++) {
-                                    System.out.print(VentanaPatron.patronVictoria[k][m] + " ");
-                                }
-                                System.out.println();
-                            }
+                            logicaBingo.imprimirPatron();
 
                         }
                     }
                 }
                 tiradasRestantes--;
                 if(logicaBingo.verificarVictoria()){
-                    mensaje("GANASTE", "src/bingoIcono.png");
+                    mensaje("GANASTE", "Bingo/src/bingoIcono.png");
                     dispose();
                 } else if(!logicaBingo.verificarVictoria() && tiradasRestantes <= 0){
-                    mensaje("PERDISTE", "src/multiplicar.png");
+                    mensaje("PERDISTE", "Bingo/src/multiplicar.png");
                     dispose();
                 }
                 for (int i = 0; i < 5; i++) {

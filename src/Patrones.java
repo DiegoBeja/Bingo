@@ -310,4 +310,14 @@ public class Patrones{
     public static int getCantidadPatrones() {
         return PATRONES.size();
     }
+
+    public void imprimirPatron(){
+        for(int k = 0; k < VentanaPatron.patronVictoria.length; k++){
+            for(int m = 0; m < VentanaPatron.patronVictoria[k].length; m++) {
+                System.out.print(VentanaPatron.patronVictoria[k][m] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }

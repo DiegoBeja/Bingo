@@ -33,10 +33,10 @@ public class VentanaPatron extends JFrame implements Mensaje{
         botones = new HashMap<>();
 
         for (int i = 0; i < 38; i++) {
-            String archivoNombre = "C:\\Users\\bombo\\IdeaProjects\\Bingo\\src\\Patrones\\patron" + (i + 1) + ".png";
+            String archivoNombre = "C:\\Users\\bombo\\Desktop\\Bingo\\Bingo\\src\\Patrones\\patron" + (i + 1) + ".png";
             ImageIcon imagPatrones = new ImageIcon(archivoNombre);
 
-            Image img = imagPatrones.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+            Image img = imagPatrones.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             ImageIcon imagenPatrones = new ImageIcon(img);
 
             JPanel itemPanel = new JPanel();
@@ -103,7 +103,7 @@ public class VentanaPatron extends JFrame implements Mensaje{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Integer.parseInt(tiradasTombola.getText()) < 5 || Integer.parseInt(tiradasTombola.getText()) > 75){
-                    mensaje("Ingrese un valor entre 5 y 75", "src/multiplicar.png");
+                    mensaje("Ingrese un valor entre 5 y 75", "Bingo/src/multiplicar.png");
                     tiradasTombola.setText("");
                 }else{
                     int tiradas = Integer.parseInt(tiradasTombola.getText());
