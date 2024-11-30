@@ -307,9 +307,6 @@ public class Patrones{
         }
     }
 
-    public static int getCantidadPatrones() {
-        return PATRONES.size();
-    }
 
     public void imprimirPatron(){
         for(int k = 0; k < VentanaPatron.patronVictoria.length; k++){

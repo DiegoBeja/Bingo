@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class LogicaBingo extends Patrones{
     public LogicaBingo(){

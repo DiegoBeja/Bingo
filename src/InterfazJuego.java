@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +6,6 @@ import java.util.*;
 import java.util.List;
 
 public class InterfazJuego extends JFrame implements Mensaje{
-    private JPanel panelBingo;
     private JPanel tablero;
     private JPanel historial;
     private JPanel infoGirar;
@@ -58,7 +55,7 @@ public class InterfazJuego extends JFrame implements Mensaje{
                 } while (usados[i].contains(num));
                 usados[i].add(num);
 
-                if(i == 2 && j == 3){
+                if(i == 2    && j == 3){
                     tableroBingo[j][i] = new JLabel("Free");
                     tableroBingo[j][i].setHorizontalAlignment(JLabel.CENTER);
                     tableroBingo[j][i].setFont(new Font("Arial", Font.BOLD, 25));
@@ -110,10 +107,10 @@ public class InterfazJuego extends JFrame implements Mensaje{
                 }
                 tiradasRestantes--;
                 if(logicaBingo.verificarVictoria()){
-                    mensaje("GANASTE", "Bingo/src/bingoIcono.png");
+                    mensaje("GANASTE", "src/bingoIcono.png");
                     dispose();
                 } else if(!logicaBingo.verificarVictoria() && tiradasRestantes <= 0){
-                    mensaje("PERDISTE", "Bingo/src/multiplicar.png");
+                    mensaje("PERDISTE", "src/multiplicar.png");
                     dispose();
                 }
                 for (int i = 0; i < 5; i++) {
